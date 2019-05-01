@@ -3,6 +3,7 @@ import Recipe from './models/Recipe';
 import List from './models/List';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
+import * as listView from './views/listView';
 import {
     elements,
     renderLoader,
@@ -16,6 +17,7 @@ import {
 // * - Shopping list objetc
 // * - Liked recipes
 const state = {};
+window.state = state;
 
 // ? SEARCH CONTROLLER ##################################################################################################
 const controlSearch = async () => {
@@ -120,6 +122,42 @@ const controlRecipe = async () => {
 // window.addEventListener('load', controlRecipe);
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
 
+// ? LIST CONTROLLER ##################################################################################################
+
+const controlList = () => {
+
+    // create a new list IF there in none yet
+    if (!state.list) state.list = new List();
+
+    // Add each ingredient to the list and UI
+    state.recipe.ingredients.forEach(el => {
+        const item = state.list.addItem(el.count, el.unit, el.ingredient);
+        listView.renderItem(item);
+    });
+
+}
+
+// Handle delete and update list item events
+elements.shopping.addEventListener('click', e => {
+    // get the element by class that and get the data-itemid value
+    const id = e.target.closest('.shopping__item').dataset.itemid;
+
+    // handle the delete button
+    if (e.target.matches('shopping__delete, .shopping__delete *')) {
+        // Dele from state
+        state.list.deleteItem(id);
+
+        // Delete from UI
+        listView.deleteItem(id);
+    } else if (e.target.matches('.shopping__count-value')) {
+        // read the data from interface
+        const val = parseFloat(e.target.value);
+
+        // update data
+        state.list.updateCount(id, val);
+    }
+});
+
 // handling rcipe button clicks
 elements.recipe.addEventListener('click', e => {
     // use * to consider any children of the element
@@ -133,6 +171,8 @@ elements.recipe.addEventListener('click', e => {
         // Increase button is clicked
         state.recipe.updateServings('inc');
         recipeView.updateServingsIngredients(state.recipe);
+    } else if (e.target.matches('.recipe__btn, .recipe__btn *')) {
+        controlList()
     }
     // console.log(state.recipe);
 });
