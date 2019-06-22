@@ -1,6 +1,6 @@
 # forkfy
 
-Project developed to practice modern javascript using ES6, NPM, Babel and Webpack
+Project developed to practice modern javascript using ES6, NPM, Babel, Webpack and API Requests
 
 1. Search for recipe
 2. Choose a recipe and see ingredients
