@@ -24,8 +24,8 @@ const controlSearch = async () => {
 
     // 1. get query from view
     const query = searchView.getInput();
-    // const query = 'pizza';
-    // console.log(query);
+    //const query = 'chicken';
+    //console.log(query);
 
     // if ter is a query
     if (query) {
@@ -43,6 +43,7 @@ const controlSearch = async () => {
 
             // 5. Render results on UI
             clearLoader();
+            console.log(state.search.result)
             searchView.renderResults(state.search.result);
         } catch (err) {
             alert(`Search: #1 Error processing [${err}]`);
@@ -85,7 +86,7 @@ const controlRecipe = async () => {
         recipeView.clearRecipe();
         renderLoader(elements.recipe);
 
-        // Highlight  selected search item
+        // Highlight selected search item
         if (state.search) searchView.highlightSelected(id);
 
         // Create new recipe objetc
@@ -98,7 +99,7 @@ const controlRecipe = async () => {
         try {
             // Get recipe data and parse ingredients
             await state.recipe.getRecipe();
-            // console.log(state.recipe.ingredients);
+            console.log(state.recipe.ingredients);
             state.recipe.parseIngredients();
 
             // Calculate servings and time

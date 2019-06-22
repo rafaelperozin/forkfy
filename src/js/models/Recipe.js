@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { key } from '../config';
+import { edamamID, edamamKey } from '../config';
 
 export default class Recipe {
     constructor(id) {
@@ -8,12 +8,13 @@ export default class Recipe {
 
     async getRecipe() {
         try {
-            const res = await axios(`https://www.food2fork.com/api/get?key=${key}&rId=${this.id}`);
-            this.title = res.data.recipe.title;
-            this.author = res.data.recipe.publisher;
-            this.img = res.data.recipe.image_url;
-            this.url = res.data.recipe.source_url;
-            this.ingredients = res.data.recipe.ingredients;
+            const res = await axios(`https://api.edamam.com/search?r=${encodeURIComponent(this.id)}&app_id=${edamamID}&app_key=${edamamKey}`);
+            console.log(res.data[0])
+            this.title = res.data[0].label;
+            this.author = res.data[0].source;
+            this.img = res.data[0].image;
+            this.url = res.data[0].url;
+            this.ingredients = res.data[0].ingredients;
         } catch (error) {
             alert(`Recipe: #2 Error building [${error}]`);
         }
@@ -39,7 +40,8 @@ export default class Recipe {
         const nnewIngredients = this.ingredients.map(el => {
             
             // 1) Uniform units
-            let ingredient = el.toLowerCase();
+            console.log(el.text)
+            let ingredient = el.text.toLowerCase();
             unitsLong.forEach((unit, i) => {
                 ingredient = ingredient.replace(unit, unitsShort[i]);
             });
