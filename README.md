@@ -1,6 +1,7 @@
 # forkfy
 
 Project developed to practice modern javascript using ES6, NPM, Babel, Webpack and API Requests
+Recipe Search API: www.edamam.com
 
 1. Search for recipe
 2. Choose a recipe and see ingredients
