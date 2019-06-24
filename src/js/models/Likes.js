@@ -13,10 +13,10 @@ export default class Likes {
         // find the item in the array
         const index = this.likes.findIndex(el => el.id === id);
         // remove the item from the array
-        this.items.splice(index, 1);
+        this.likes.splice(index, 1);
     }
 
-    isLIked(id) {
+    isLiked(id) {
         // will return true or false
         return this.likes.findIndex(el => el.id === id) !== -1;
     }
