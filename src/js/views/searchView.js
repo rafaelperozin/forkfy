@@ -41,16 +41,17 @@ const limitRecipeTitle = (title, limit = 17) => {
     return title;
 }
 
-const renderRecipe = recipe => {
+const renderRecipe = recipeIndex => {
     const markup = `
         <li>
-            <a class="results__link" href="#${recipe.recipe_id}">
+            <a class="results__link" href="#${recipeIndex.recipe.uri}">
                 <figure class="results__fig">
-                    <img src="${recipe.image_url}" alt="Test">
+                    <img src="${recipeIndex.recipe.image}" alt="Test">
                 </figure>
                 <div class="results__data">
-                    <h4 class="results__name">${limitRecipeTitle(recipe.title)}</h4>
-                    <p class="results__author">${recipe.publisher}</p>
+                    <h4 class="results__name">${limitRecipeTitle(recipeIndex.recipe.label)}</h4>
+                    <p class="results__author"><strong>Calories: ${Math.ceil(recipeIndex.recipe.calories)}</strong></p>
+                    <p class="results__author">Prepare Time: ${Math.ceil(recipeIndex.recipe.totalTime)}</p>
                 </div>
             </a>
         </li>
@@ -92,12 +93,11 @@ const renderButtons = (page, numResults, resPerPage) => {
 
 export const renderResults = (recipes, page = 1, resPerPage = 10) => {
     // render results of current page
-    const start = (page - 1) * resPerPage;
-    const end = page * resPerPage;
-
-    // the same of recipes.foreach(el => renderRecipe(el));
-    recipes.slice(start, end).forEach(renderRecipe);
+    //const start = (page - 1) * resPerPage;
+    //const end = page * resPerPage;
+    
+    recipes.forEach(el => renderRecipe(el));
 
     // render pagination buttons
-    renderButtons(page, recipes.length, resPerPage);
+    //renderButtons(page, recipes.length, resPerPage);
 };

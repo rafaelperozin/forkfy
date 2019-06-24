@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { key } from '../config';
+import { edamamID, edamamKey } from '../config';
 
 export default class Search {
     constructor(query) {
@@ -10,9 +10,9 @@ export default class Search {
     async getResults() {
         // use fetch, but axios return directly in JSON
         try {
-            const res = await axios(`https://www.food2fork.com/api/search?key=${key}&q=${this.query}`);
-            this.result = res.data.recipes;
-            // console.log(this.result);
+            const res = await axios(`https://api.edamam.com/search?q=${this.query}&app_id=${edamamID}&app_key=${edamamKey}`);
+            this.result = res.data.hits;
+            //console.log(this.result);
         } catch (error) {
             alert(`Search: Something went wrong [${error}]`);
         }

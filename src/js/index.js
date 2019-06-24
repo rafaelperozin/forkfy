@@ -21,8 +21,8 @@ const controlSearch = async () => {
 
     // 1. get query from view
     const query = searchView.getInput();
-    // const query = 'pizza';
-    // console.log(query);
+    //const query = 'chicken';
+    //console.log(query);
 
     // if ter is a query
     if (query) {
@@ -83,7 +83,7 @@ const controlRecipe = async () => {
         recipeView.clearRecipe();
         renderLoader(elements.recipe);
 
-        // Highlight  selected search item
+        // Highlight selected search item
         if (state.search) searchView.highlightSelected(id);
 
         // Create new recipe objetc
@@ -96,7 +96,7 @@ const controlRecipe = async () => {
         try {
             // Get recipe data and parse ingredients
             await state.recipe.getRecipe();
-            // console.log(state.recipe.ingredients);
+            console.log(state.recipe.ingredients);
             state.recipe.parseIngredients();
 
             // Calculate servings and time
