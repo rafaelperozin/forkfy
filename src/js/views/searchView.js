@@ -4,6 +4,8 @@ import {
 
 export const getInput = () => elements.searchInput.value;
 
+// ! create getFilter
+
 export const clearInput = () => {
     elements.searchInput.value = '';
 };

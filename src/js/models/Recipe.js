@@ -9,7 +9,7 @@ export default class Recipe {
     async getRecipe() {
         try {
             const res = await axios(`https://api.edamam.com/search?r=${encodeURIComponent(this.id)}&app_id=${edamamID}&app_key=${edamamKey}`);
-            console.log(res.data[0])
+            //console.log(res.data[0])
             this.title = res.data[0].label;
             this.author = res.data[0].source;
             this.img = res.data[0].image;
@@ -40,7 +40,7 @@ export default class Recipe {
         const nnewIngredients = this.ingredients.map(el => {
             
             // 1) Uniform units
-            console.log(el.text)
+            //console.log(el.text)
             let ingredient = el.text.toLowerCase();
             unitsLong.forEach((unit, i) => {
                 ingredient = ingredient.replace(unit, unitsShort[i]);

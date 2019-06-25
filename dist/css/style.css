@@ -163,11 +163,42 @@ body {
   background-color: #F9F5F3;
   display: flex;
   align-items: center;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding: 3rem 0 0 0;
+  height: fit-content;
+  flex-wrap: wrap; }
   .header__logo {
     margin-left: 4rem;
     height: 4.5rem;
     display: block; }
+  .filters {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    width: 100%; }
+  .filters__wrap {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    width: 600px; }
+  .filters__filter {
+    border: 1px solid #968B87;
+    color: #968B87;
+    padding: .5rem 1rem;
+    border-radius: 2rem;
+    font-size: 1.2rem; }
+  .filters__filter:hover {
+    background-color: #12B589;
+    border: 1px solid #12B589;
+    color: #fff;
+    cursor: pointer; }
+  .filters__filter--selected {
+    background-color: #079871;
+    border: 1px solid #079871;
+    color: #fff;
+    cursor: pointer; }
 
 .search {
   background-color: #fff;
@@ -306,7 +337,8 @@ body {
 
 .recipe {
   background-color: #F9F5F3;
-  border-top: 1px solid #fff; }
+  border-top: 1px solid #fff;
+  margin-top: 2.9rem; }
   .recipe__fig {
     height: 30rem;
     position: relative;
@@ -440,7 +472,7 @@ body {
     font-weight: 700; }
 
 .shopping {
-  padding: 3rem 1rem 3rem 4rem;
+  padding: 6rem 1rem 3rem 4rem;
   display: flex;
   flex-direction: column; }
   .shopping__list {
