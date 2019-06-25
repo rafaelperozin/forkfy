@@ -17,11 +17,11 @@ export default class Likes {
         // find the item in the array
         const index = this.likes.findIndex(el => el.id === id);
 
-        // remove from local storage
-        this.persistData();
-
         // remove the item from the array
         this.likes.splice(index, 1);
+
+        // remove from local storage
+        this.persistData();
     }
 
     isLiked(id) {
