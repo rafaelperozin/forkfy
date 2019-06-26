@@ -8,11 +8,13 @@ export default class Recipe {
 
     async getRecipe() {
         try {
-            const res = await axios(`https://api.edamam.com/search?r=${encodeURIComponent(this.id)}&app_id=${edamamID}&app_key=${edamamKey}`);
-            //console.log(res.data[0])
+            console.log(`https://api.edamam.com/search?app_id=${edamamID}&app_key=${edamamKey}&r=${encodeURIComponent(this.id)}`)
+            const res = await axios(`https://api.edamam.com/search?app_id=${edamamID}&app_key=${edamamKey}&r=${encodeURIComponent(this.id)}`);
+            console.log(res.data[0])
             this.title = res.data[0].label;
             this.author = res.data[0].source;
             this.img = res.data[0].image;
+            this.servings = res.data[0].yield;
             this.url = res.data[0].url;
             this.ingredients = res.data[0].ingredients;
         } catch (error) {
@@ -27,9 +29,9 @@ export default class Recipe {
         this.time = periods * 15;
     }
 
-    calcServings() {
-        this.servings = 4;
-    }
+    // calcServings() {
+    //     this.servings = 4;
+    // }
 
     parseIngredients() {
         

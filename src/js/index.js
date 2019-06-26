@@ -21,14 +21,13 @@ const controlSearch = async () => {
 
     // 1. get query from view
     const query = searchView.getInput();
-    //const query = 'chicken';
     //console.log(query);
 
     // get filters if selected
     const extraFilter = searchView.getFilter();
 
     // if ter is a query
-    if (query && extraFilter) {
+    if (query || extraFilter) {
         // 2. News search object and add to state
         state.search = new Search(query, extraFilter);
 
@@ -55,6 +54,13 @@ const controlSearch = async () => {
 elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
+});
+// loop to identify each filter click
+elements.setFilter.forEach(el => {
+    el.addEventListener('click', e => {
+        // when clicked toggle the class
+        e.target.classList.toggle('active');
+    });
 });
 
 // TESTING without search ---------------------------------------
@@ -99,12 +105,11 @@ const controlRecipe = async () => {
         try {
             // Get recipe data and parse ingredients
             await state.recipe.getRecipe();
-            //console.log(state.recipe.ingredients);
             state.recipe.parseIngredients();
 
             // Calculate servings and time
             state.recipe.calcTime();
-            state.recipe.calcServings();
+            // state.recipe.calcServings();
 
             // Render recipe
             clearLoader();
@@ -139,6 +144,9 @@ const controlList = () => {
         listView.renderItem(item);
     });
 
+    // active print button
+    elements.printList.style.display = 'block';
+
 }
 
 // Handle delete and update list item events
@@ -160,6 +168,14 @@ elements.shopping.addEventListener('click', e => {
         // update data
         state.list.updateCount(id, val);
     }
+});
+
+elements.printList.addEventListener('click', el => {
+    var printContents = elements.printableArea.innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
 });
 
 // ? LIKE CONTROLLER ##################################################################################################
@@ -210,7 +226,7 @@ window.addEventListener('load', () => {
 });
 
 
-// handling rcipe button clicks
+// handling recipe button clicks
 elements.recipe.addEventListener('click', e => {
     // use * to consider any children of the element
     if (e.target.matches('.btn-decrease, .btn-decrease *')) {

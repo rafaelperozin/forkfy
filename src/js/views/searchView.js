@@ -7,7 +7,7 @@ export const getInput = () => elements.searchInput.value;
 export const getFilter = () => {
     const allFiltersArr = [];
     // loop trought the element and get ids
-    elements.searchFilters.forEach(el => {
+    document.querySelectorAll('.filters__filter.active').forEach(el => {
         // store ids in array
         allFiltersArr.push(el.id);
     });

@@ -12,7 +12,7 @@ export default class Search {
         // loop troought the array
         this.filters.forEach(el => {
             // set parameter diet or health
-            const param = (el === 'low-carb' || el === 'low-fat') ? 'diet' : 'health';
+            const param = (el === 'low-carb' || el === 'low-fat' || el == 'balanced' || el === 'high-protein') ? 'diet' : 'health';
             // build url param
             filterParam += `&${param}=${el}`;
         });
@@ -24,10 +24,10 @@ export default class Search {
     async getResults() {
         // use fetch, but axios return directly in JSON
         try {
-            console.log(this.filtersQuery())
+            console.log(`https://api.edamam.com/search?q=${this.query}&app_id=${edamamID}&app_key=${edamamKey}${this.filtersQuery()}`)
             const res = await axios(`https://api.edamam.com/search?q=${this.query}&app_id=${edamamID}&app_key=${edamamKey}${this.filtersQuery()}`);
             this.result = res.data.hits;
-            //console.log(this.result);
+            console.log(this.result);
         } catch (error) {
             alert(`Search: Something went wrong [${error}]`);
         }
