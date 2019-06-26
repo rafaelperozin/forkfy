@@ -24,13 +24,13 @@ const controlSearch = async () => {
     //const query = 'chicken';
     //console.log(query);
 
-    // ! get filters if selected
+    // get filters if selected
     const extraFilter = searchView.getFilter();
 
     // if ter is a query
     if (query && extraFilter) {
         // 2. News search object and add to state
-        state.search = new Search(query);
+        state.search = new Search(query, extraFilter);
 
         // 3. Prepare UI for recipes
         searchView.clearInput();

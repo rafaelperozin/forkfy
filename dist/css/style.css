@@ -194,7 +194,7 @@ body {
     border: 1px solid #12B589;
     color: #fff;
     cursor: pointer; }
-  .filters__filter--selected {
+  .filters__filter.active {
     background-color: #079871;
     border: 1px solid #079871;
     color: #fff;

@@ -4,7 +4,15 @@ import {
 
 export const getInput = () => elements.searchInput.value;
 
-// ! create getFilter
+export const getFilter = () => {
+    const allFiltersArr = [];
+    // loop trought the element and get ids
+    elements.searchFilters.forEach(el => {
+        // store ids in array
+        allFiltersArr.push(el.id);
+    });
+    return allFiltersArr;
+};
 
 export const clearInput = () => {
     elements.searchInput.value = '';
