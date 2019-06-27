@@ -141,6 +141,8 @@ const controlList = () => {
     // Add each ingredient to the list and UI
     state.recipe.ingredients.forEach(el => {
         const item = state.list.addItem(el.count, el.unit, el.ingredient);
+        // ! retuning ID error when render after add to list
+        console.log(state.list)
         listView.renderItem(item);
     });
 
@@ -223,6 +225,8 @@ window.addEventListener('load', () => {
     likesView.toggleLikeMenu(state.likes.getNumLikes());
     // render existing likes
     state.likes.likes.forEach(like => likesView.renderLike(like));
+    // show add all if has 
+    // if (document.querySelectorAll('.likes__list li .likes__link').length > 0) elements.addFavorites.style.display = 'block';
 });
 
 

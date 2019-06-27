@@ -12,8 +12,16 @@ export default class List {
             unit,
             ingredient
         }
-        this.items.push(item);
-        return item;
+        // return true when ingredient is not in the current list
+        const noIngredient = this.items.findIndex(el => el.ingredient === item.ingredient) === -1 ? true : false;
+        if (noIngredient) {
+            // if no match ingredient on list
+            this.items.push(item);
+            return item;
+        } else {
+            // if ingredient already in the shopping list
+            console.log('increase quantity for existent item')
+        }
     }
 
     deleteItem(id) {

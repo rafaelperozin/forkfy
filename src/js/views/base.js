@@ -10,7 +10,8 @@ export const elements = {
     likesMenu: document.querySelector('.likes__field'),
     likesList: document.querySelector('.likes__list'),
     printList: document.querySelector('.printList'),
-    printableArea: document.getElementById('onlyPrintThis')
+    printableArea: document.getElementById('onlyPrintThis'),
+    addFavorites: document.querySelector('.addAll'),
 }
 
 export const elementStrings = {

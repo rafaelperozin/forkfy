@@ -26,6 +26,7 @@ export const renderLike = like => {
         </li>
     `;
     elements.likesList.insertAdjacentHTML('beforeend', markup);
+    //elements.addFavorites.insertAdjacentHTML('beforebegin', markup); to use when have a add all button
 }
 
 export const deleteLike = id => {
